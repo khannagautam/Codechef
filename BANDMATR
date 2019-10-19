@@ -1,0 +1,68 @@
+// Problem link : https://www.codechef.com/MARCH17/problems/BANDMATR
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		
+		int arr[n][n];
+		
+		int i,j;
+		int sum=0;
+		for(i=0;i<n;i++)
+		  for(j=0;j<n;j++)
+		    cin>>arr[i][j], sum+=arr[i][j];
+		
+		int ele=n,ans=0;
+		if(sum<=ele)
+		 ans=0;
+		else
+		{
+			sum-=ele;
+			while(sum>0)
+			{
+				ele--;
+				sum-=(ele+ele);
+				ans++;	
+				//cout<<sum<<endl;
+			}
+		}
+		cout<<ans<<endl;
+		
+		/*int diff=n-1,ans=0;
+		bool flag=true,flag2;
+		while(diff>=0)
+		{
+			flag2=true;
+			for(i=0;i+diff<n;i++)
+			{
+				if(arr[i][i+diff]!=0 || arr[i+diff][i]!=0)
+				{
+					flag2=false;
+					//cout<<diff<<endl;
+					break;
+				}
+				
+			}
+			if(flag && !flag2)
+			{
+				ans=diff;
+				break;
+			}
+		 	else if(flag2 && !flag)
+			  flag=true;
+			diff--;
+		}
+		if(!flag)
+		 cout<<n<<endl;
+		else
+		cout<<ans<<endl;*/
+	}
+}
