@@ -1,0 +1,68 @@
+// solution for - https://www.codechef.com/viewsolution/13500770
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+long long ans,k;
+ 
+vector<long long>arr; 
+void recur(int i,long long pro)
+{
+	//cout<<"in i= "<<i<<" pro= "<<pro<<" ans= "<<ans<<endl;
+	double a1=arr[i];
+	a1*=pro;
+	if(a1>k)
+	   return;
+	   
+		pro*=arr[i];
+	    ans++;
+	    int j=i+1;
+	    if(j==arr.size())
+	      return;
+	    double a2=a1;
+	    while(j<arr.size())
+	    {
+	    	  a2*=arr[j];
+	    	  if(a2>k)
+	    	    break;
+			  j++;
+			  	
+		}
+	    if(a2<=k)
+	    {
+	    	int add=arr.size()-i-1;
+	    	add=pow(2,add);
+	    	ans+=add-1;
+	    //	cout<<"going in at j= "<<i<<" add= "<<add<<" ans= "<<ans<<endl;
+	    	return;
+		}
+		
+	   for(int j=i+1;j<arr.size();j++) 
+	     recur(j,pro);
+	 	    
+	
+}
+ 
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	
+	int t=1;
+	//cin>>t;
+	ans=0;
+	while(t--)
+	{
+		int i,j,n;
+		
+		cin>>n>>k;
+		arr.resize(n);
+		for(i=0;i<n;i++)
+		  cin>>arr[i];
+		sort(arr.rbegin(),arr.rend());
+		i=0;
+		for(i=0;i<n;i++)
+			recur(i,1);
+		cout<<ans<<endl;
+	}
+}  
