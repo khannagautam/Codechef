@@ -1,0 +1,43 @@
+// Problem link : https://www.codechef.com/viewsolution/13452769
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	
+	int t;
+	cin>>t;
+	
+	while(t--)
+	{
+		int n;
+		cin>>n;
+	
+		n*=2;
+		int a[n];
+		int i,j,k;
+		for(i=0;i<n;i++)
+		  cin>>a[i];
+		sort(a,a+n);
+		
+		i=0;
+		j=n-1;
+		int m=n/2;
+		int b[m],arr[n];
+		int ind=0;
+		while(i<j)
+		{
+			arr[ind++]=a[i];
+			arr[ind++]=a[j];
+			b[i]=a[j];
+			i++;
+			j--;
+		}
+		cout<<b[m/2]<<endl;
+		for(i=0;i<n;i++)
+		  cout<<arr[i]<<" ";
+		cout<<endl;
+	}
+}
